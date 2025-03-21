@@ -20,7 +20,7 @@ This project takes a hash string as input and checks it against a built-in datab
 Clone the repository:
 
 ```sh
-git clone https://github.com/yourusername/hash-identifier.git
+git clone https://github.com/so1icitx/so1-hash-identifier.git
 cd hash-identifier
 ```
 
