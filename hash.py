@@ -11,7 +11,7 @@ LOGO = """
     │    o.`Y8b Yb   dP   88 88 Yb      88   88    dPYb          │
     │    8bodP'  YbodP    88 88  YboodP 88   88   dP  Yb         │
     │                                                            │
-    │    HashSlicitx v1.1 - Enterprise Hash Identification        │
+    │    HashSlicitx v1.5 - Enterprise Hash Identification        │
     │    Developed by so1icitx | Enhanced by XAI6                │
     │    Date: March 21, 2025                                    │
     │    Precision: 99.99% Confidence                             │
@@ -30,7 +30,7 @@ HASH_DB: Dict[str, Tuple[Optional[int], str, int]] = {
     "MD2": (32, r"^[0-9a-f]{32}$", 25), "MD2-HMAC": (32, r"^[0-9a-f]{32}$", 20),
     "MD4": (32, r"^[0-9a-f]{32}$", 40), "MD4-HMAC": (32, r"^[0-9a-f]{32}$", 35),
     "MD5": (32, r"^[0-9a-f]{32}$", 95), "MD5-HMAC": (32, r"^[0-9a-f]{32}$", 80),
-    "MD5-HMAC-Wordpress": (32, r"^[0-9a-f]{32}$", 70), "NTLM": (32, r"^[0-9a-f]{32}$", 85),
+    "MD5-HMAC-Wordpress": (32, r"^[0-9a-f]{32}$", 70), "NTLM": (32, r"^[0-9a-f]{32}$", 90),
     "RAdmin-v2.x": (32, r"^[0-9a-f]{32}$", 30), "RipeMD-128": (32, r"^[0-9a-f]{32}$", 25),
     "RipeMD-128-HMAC": (32, r"^[0-9a-f]{32}$", 20), "SNEFRU-128": (32, r"^[0-9a-f]{32}$", 15),
     "SNEFRU-128-HMAC": (32, r"^[0-9a-f]{32}$", 10), "Tiger-128": (32, r"^[0-9a-f]{32}$", 15),
@@ -47,86 +47,93 @@ HASH_DB: Dict[str, Tuple[Optional[int], str, int]] = {
     "md5(md5(md5($pass)))": (32, r"^[0-9a-f]{32}$", 50), "md5(md5(md5(md5($pass))))": (32, r"^[0-9a-f]{32}$", 40),
     "md5(md5(md5(md5(md5($pass)))))": (32, r"^[0-9a-f]{32}$", 35), "md5(sha1($pass))": (32, r"^[0-9a-f]{32}$", 45),
     "md5(sha1(md5($pass)))": (32, r"^[0-9a-f]{32}$", 40), "md5(sha1(md5(sha1($pass))))": (32, r"^[0-9a-f]{32}$", 35),
-    "md5(strtoupper(md5($pass)))": (32, r"^[0-9a-f]{32}$", 40), "Lineage-II-C4": (34, r"^0x[0-9a-f]{32}$", 30),
-    "něMD5-phpBB3": (34, r"^\$H\$9[0-9A-Za-z./]{31}$", 70), "MD5-Unix": (34, r"^\$1\$.{8}\$.{22}$", 75),
-    "MD5-Wordpress": (34, r"^\$P\$B[0-9A-Za-z./]{31}$", 70), "MD5-APR": (37, r"^\$apr1\$.{8}\$.{22}$", 65),
-    "Haval-160": (40, r"^[0-9a-f]{40}$", 20), "Haval-160-HMAC": (40, r"^[0-9a-f]{40}$", 15),
-    "MySQL5": (40, r"^[0-9a-f]{40}$", 50), "MySQL-160bit": (41, r"^\*[0-9A-F]{40}$", 55),
-    "RipeMD-160": (40, r"^[0-9a-f]{40}$", 25), "RipeMD-160-HMAC": (40, r"^[0-9a-f]{40}$", 20),
-    "SHA-1": (40, r"^[0-9a-f]{40}$", 90), "SHA-1-HMAC": (40, r"^[0-9a-f]{40}$", 80),
-    "SHA-1-MaNGOS": (40, r"^[0-9a-f]{40}$", 30), "SHA-1-MaNGOS2": (40, r"^[0-9a-f]{40}$", 25),
-    "Tiger-160": (40, r"^[0-9a-f]{40}$", 15), "Tiger-160-HMAC": (40, r"^[0-9a-f]{40}$", 10),
-    "sha1($pass.$salt)": (40, r"^[0-9a-f]{40}$", 70), "sha1($salt.$pass)": (40, r"^[0-9a-f]{40}$", 65),
-    "sha1($salt.md5($pass))": (40, r"^[0-9a-f]{40}$", 55), "sha1($salt.md5($pass).$salt)": (40, r"^[0-9a-f]{40}$", 50),
-    "sha1($salt.sha1($pass))": (40, r"^[0-9a-f]{40}$", 50), "sha1($salt.sha1($salt.sha1($pass)))": (40, r"^[0-9a-f]{40}$", 45),
-    "sha1($username.$pass)": (40, r"^[0-9a-f]{40}$", 60), "sha1($username.$pass.$salt)": (40, r"^[0-9a-f]{40}$", 55),
-    "sha1(md5($pass))": (40, r"^[0-9a-f]{40}$", 55), "sha1(md5($pass).$salt)": (40, r"^[0-9a-f]{40}$", 50),
-    "sha1(md5(sha1($pass)))": (40, r"^[0-9a-f]{40}$", 45), "sha1(sha1($pass))": (40, r"^[0-9a-f]{40}$", 60),
-    "sha1(sha1($pass).$salt)": (40, r"^[0-9a-f]{40}$", 55), "sha1(sha1($pass).substr($pass,0,3))": (40, r"^[0-9a-f]{40}$", 40),
-    "sha1(sha1($salt.$pass))": (40, r"^[0-9a-f]{40}$", 50), "sha1(sha1(sha1($pass)))": (40, r"^[0-9a-f]{40}$", 45),
-    "sha1(strtolower($username).$pass)": (40, r"^[0-9a-f]{40}$", 50), "Haval-192": (48, r"^[0-9a-f]{48}$", 20),
-    "Haval-192-HMAC": (48, r"^[0-9a-f]{48}$", 15), "Tiger-192": (48, r"^[0-9a-f]{48}$", 15),
-    "Tiger-192-HMAC": (48, r"^[0-9a-f]{48}$", 10), "MD5-Joomla": (49, r"^[0-9a-f]{32}:[0-9A-Za-z]{16}$", 60),
-    "SHA-1-Django": (None, r"^sha1\$.+\$[0-9a-f]{40}$", 65), "Haval-224": (56, r"^[0-9a-f]{56}$", 20),
-    "Haval-224-HMAC": (56, r"^[0-9a-f]{56}$", 15), "SHA-224": (56, r"^[0-9a-f]{56}$", 70),
-    "SHA-224-HMAC": (56, r"^[0-9a-f]{56}$", 60), "bcrypt": (60, r"^\$2[ayb]\$.{2}\$[A-Za-z0-9./]{53}$", 85),
-    "SAM-(LM:NT)": (65, r"^[0-9A-F]{32}:[0-9A-F]{32}$", 70), "Haval-256": (64, r"^[0-9a-f]{64}$", 20),
-    "Haval-256-HMAC": (64, r"^[0-9a-f]{64}$", 15), "SHA-256": (64, r"^[0-9a-f]{64}$", 90),
-    "SHA-256-HMAC": (64, r"^[0-9a-f]{64}$", 80), "GOST-R-34.11-94": (64, r"^[0-9a-f]{64}$", 25),
-    "RipeMD-256": (64, r"^[0-9a-f]{64}$", 25), "RipeMD-256-HMAC": (64, r"^[0-9a-f]{64}$", 20),
-    "SNEFRU-256": (64, r"^[0-9a-f]{64}$", 15), "SNEFRU-256-HMAC": (64, r"^[0-9a-f]{64}$", 10),
-    "SHA-256-md5($pass)": (64, r"^[0-9a-f]{64}$", 50), "SHA-256-sha1($pass)": (64, r"^[0-9a-f]{64}$", 50),
-    "SHA-3-256": (64, r"^[0-9a-f]{64}$", 65), "Blake2b-256": (64, r"^[0-9a-f]{64}$", 40),
-    "Blake2s-256": (64, r"^[0-9a-f]{64}$", 35), "Keccak-256": (64, r"^[0-9a-f]{64}$", 45),
-    "RipeMD-320": (80, r"^[0-9a-f]{80}$", 25), "RipeMD-320-HMAC": (80, r"^[0-9a-f]{80}$", 20),
-    "SHA-256-Django": (None, r"^sha256\$.+\$[0-9a-f]{64}$", 70), "SHA-256-Unix": (None, r"^\$6\$.{8}\$.{86}$", 75),
-    "SHA-384": (96, r"^[0-9a-f]{96}$", 70), "SHA-384-HMAC": (96, r"^[0-9a-f]{96}$", 60),
-    "SHA-3-384": (96, r"^[0-9a-f]{96}$", 60), "SHA-384-Django": (None, r"^sha384\$.+\$[0-9a-f]{96}$", 65),
-    "SHA-512": (128, r"^[0-9a-f]{128}$", 80), "SHA-512-HMAC": (128, r"^[0-9a-f]{128}$", 70),
-    "Whirlpool": (128, r"^[0-9a-f]{128}$", 40), "Whirlpool-HMAC": (128, r"^[0-9a-f]{128}$", 35),
-    "SHA-3-512": (128, r"^[0-9a-f]{128}$", 60), "Blake2b-512": (128, r"^[0-9a-f]{128}$", 45),
-    "Keccak-512": (128, r"^[0-9a-f]{128}$", 50), "Argon2i": (None, r"^\$argon2i\$v=19\$m=\d+,\d+,\d+\$[A-Za-z0-9+/]+$[A-Za-z0-9+/]+", 70),
+    "md5(strtoupper(md5($pass)))": (32, r"^[0-9a-f]{32}$", 40), "LM": (32, r"^[0-9A-F]{32}$", 90),
+    "Lineage-II-C4": (34, r"^0x[0-9a-f]{32}$", 30), "MD5-phpBB3": (34, r"^\$H\$9[0-9A-Za-z./]{31}$", 70),
+    "MD5-Unix": (34, r"^\$1\$.{8}\$.{22}$", 75), "MD5-Wordpress": (34, r"^\$P\$B[0-9A-Za-z./]{31}$", 70),
+    "MD5-APR": (37, r"^\$apr1\$.{8}\$.{22}$", 65), "Haval-160": (40, r"^[0-9a-f]{40}$", 20),
+    "Haval-160-HMAC": (40, r"^[0-9a-f]{40}$", 15), "MySQL5": (40, r"^[0-9a-f]{40}$", 85),
+    "MySQL-160bit": (41, r"^\*[0-9A-F]{40}$", 55), "RipeMD-160": (40, r"^[0-9a-f]{40}$", 25),
+    "RipeMD-160-HMAC": (40, r"^[0-9a-f]{40}$", 20), "SHA-1": (40, r"^[0-9a-f]{40}$", 90),
+    "SHA-1-HMAC": (40, r"^[0-9a-f]{40}$", 80), "SHA-1-MaNGOS": (40, r"^[0-9a-f]{40}$", 30),
+    "SHA-1-MaNGOS2": (40, r"^[0-9a-f]{40}$", 25), "Tiger-160": (40, r"^[0-9a-f]{40}$", 15),
+    "Tiger-160-HMAC": (40, r"^[0-9a-f]{40}$", 10), "sha1($pass.$salt)": (40, r"^[0-9a-f]{40}$", 70),
+    "sha1($salt.$pass)": (40, r"^[0-9a-f]{40}$", 65), "sha1($salt.md5($pass))": (40, r"^[0-9a-f]{40}$", 55),
+    "sha1($salt.md5($pass).$salt)": (40, r"^[0-9a-f]{40}$", 50), "sha1($salt.sha1($pass))": (40, r"^[0-9a-f]{40}$", 50),
+    "sha1($salt.sha1($salt.sha1($pass)))": (40, r"^[0-9a-f]{40}$", 45), "sha1($username.$pass)": (40, r"^[0-9a-f]{40}$", 60),
+    "sha1($username.$pass.$salt)": (40, r"^[0-9a-f]{40}$", 55), "sha1(md5($pass))": (40, r"^[0-9a-f]{40}$", 55),
+    "sha1(md5($pass).$salt)": (40, r"^[0-9a-f]{40}$", 50), "sha1(md5(sha1($pass)))": (40, r"^[0-9a-f]{40}$", 45),
+    "sha1(sha1($pass))": (40, r"^[0-9a-f]{40}$", 60), "sha1(sha1($pass).$salt)": (40, r"^[0-9a-f]{40}$", 55),
+    "sha1(sha1($pass).substr($pass,0,3))": (40, r"^[0-9a-f]{40}$", 40), "sha1(sha1($salt.$pass))": (40, r"^[0-9a-f]{40}$", 50),
+    "sha1(sha1(sha1($pass)))": (40, r"^[0-9a-f]{40}$", 45), "sha1(strtolower($username).$pass)": (40, r"^[0-9a-f]{40}$", 50),
+    "Haval-192": (48, r"^[0-9a-f]{48}$", 20), "Haval-192-HMAC": (48, r"^[0-9a-f]{48}$", 15),
+    "Tiger-192": (48, r"^[0-9a-f]{48}$", 15), "Tiger-192-HMAC": (48, r"^[0-9a-f]{48}$", 10),
+    "MD5-Joomla": (49, r"^[0-9a-f]{32}:[0-9A-Za-z]{16}$", 60), "SHA-1-Django": (None, r"^sha1\$.+\$[0-9a-f]{40}$", 65),
+    "Haval-224": (56, r"^[0-9a-f]{56}$", 20), "Haval-224-HMAC": (56, r"^[0-9a-f]{56}$", 15),
+    "SHA-224": (56, r"^[0-9a-f]{56}$", 70), "SHA-224-HMAC": (56, r"^[0-9a-f]{56}$", 60),
+    "bcrypt": (60, r"^\$2[ayb]\$\d{2}\$[./A-Za-z0-9]{53}$", 85), "SAM-(LM:NT)": (65, r"^[0-9A-F]{32}:[0-9A-F]{32}$", 70),
+    "Haval-256": (64, r"^[0-9a-f]{64}$", 20), "Haval-256-HMAC": (64, r"^[0-9a-f]{64}$", 15),
+    "SHA-256": (64, r"^[0-9a-f]{64}$", 90), "SHA-256-HMAC": (64, r"^[0-9a-f]{64}$", 80),
+    "GOST-R-34.11-94": (64, r"^[0-9a-f]{64}$", 25), "RipeMD-256": (64, r"^[0-9a-f]{64}$", 25),
+    "RipeMD-256-HMAC": (64, r"^[0-9a-f]{64}$", 20), "SNEFRU-256": (64, r"^[0-9a-f]{64}$", 15),
+    "SNEFRU-256-HMAC": (64, r"^[0-9a-f]{64}$", 10), "SHA-256-md5($pass)": (64, r"^[0-9a-f]{64}$", 50),
+    "SHA-256-sha1($pass)": (64, r"^[0-9a-f]{64}$", 50), "SHA-3-256": (64, r"^[0-9a-f]{64}$", 65),
+    "Blake2b-256": (64, r"^[0-9a-f]{64}$", 40), "Blake2s-256": (64, r"^[0-9a-f]{64}$", 35),
+    "Keccak-256": (64, r"^[0-9a-f]{64}$", 45), "RipeMD-320": (80, r"^[0-9a-f]{80}$", 25),
+    "RipeMD-320-HMAC": (80, r"^[0-9a-f]{80}$", 20), "SHA-256-Django": (None, r"^sha256\$.+\$[0-9a-f]{64}$", 70),
+    "SHA-256-Unix": (None, r"^\$6\$.{8}\$.{86}$", 75), "SHA-384": (96, r"^[0-9a-f]{96}$", 70),
+    "SHA-384-HMAC": (96, r"^[0-9a-f]{96}$", 60), "SHA-3-384": (96, r"^[0-9a-f]{96}$", 60),
+    "SHA-384-Django": (None, r"^sha384\$.+\$[0-9a-f]{96}$", 65), "SHA-512": (128, r"^[0-9a-f]{128}$", 80),
+    "SHA-512-HMAC": (128, r"^[0-9a-f]{128}$", 70), "Whirlpool": (128, r"^[0-9a-f]{128}$", 90),
+    "Whirlpool-HMAC": (128, r"^[0-9a-f]{128}$", 35), "SHA-3-512": (128, r"^[0-9a-f]{128}$", 60),
+    "Blake2b-512": (128, r"^[0-9a-f]{128}$", 45), "Keccak-512": (128, r"^[0-9a-f]{128}$", 50),
+    "Argon2i": (None, r"^\$argon2i\$v=19\$m=\d+,\d+,\d+\$[A-Za-z0-9+/]+$[A-Za-z0-9+/]+", 70),
     "Argon2id": (None, r"^\$argon2id\$v=19\$m=\d+,\d+,\d+\$[A-Za-z0-9+/]+$[A-Za-z0-9+/]+", 75),
     "PBKDF2-SHA256": (None, r"^\$pbkdf2-sha256\$\d+\$[A-Za-z0-9+/]+\$[A-Za-z0-9+/]+", 70),
     "scrypt": (None, r"^\$s0\$\d{5}\$[A-Za-z0-9+/]{43}\$[A-Za-z0-9+/]+", 65),
 }
 
-class HashTective:
+class HashSlicitx:
     def __init__(self):
         self.best_match: Optional[str] = None
         self.confidence: float = 0.0
         self.timestamp: str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        self.possible_matches: list = []
 
     def identify(self, hash_str: str) -> None:
-        hash_str = hash_str.strip().lower()
+        original_hash = hash_str.strip()
+        hash_str_lower = hash_str.strip().lower()
         self.best_match = None
         self.confidence = 0.0
-        scores = []
+        self.possible_matches = []
 
         for hash_type, (length, pattern, prevalence) in HASH_DB.items():
-            if length and len(hash_str) != length:
+            check_str = original_hash if hash_type in ["LM", "MySQL-160bit", "SAM-(LM:NT)"] else hash_str_lower
+            if length and len(check_str) != length:
                 continue
-            if pattern and not re.match(pattern, hash_str):
+            if pattern and not re.match(pattern, check_str):
                 continue
-            if not self.refine_match(hash_type, hash_str):
+            if not self.refine_match(hash_type, check_str):
                 continue
 
             score = prevalence
-            if self.is_unique_format(hash_type, hash_str):
-                score += 25
+            if self.is_unique_format(hash_type, check_str):
+                score += 50
+
+            if hash_type == "LM" and check_str.isupper():
+                score += 30
+            if hash_type == "NTLM" and check_str != hash_str_lower.upper():
+                score += 20
             if "HMAC" in hash_type:
                 score -= 10
-            if "md5(" in hash_type or "sha1(" in hash_type:
-                score -= 5
-            scores.append((hash_type, min(score, 100)))
+            self.possible_matches.append((hash_type, min(score, 100)))
 
-        if scores:
-            scores.sort(key=lambda x: x[1], reverse=True)
-            self.best_match, self.confidence = scores[0]
-            if len(scores) == 1 or (self.confidence - (scores[1][1] if len(scores) > 1 else 0) > 40):
+        if self.possible_matches:
+            self.possible_matches.sort(key=lambda x: x[1], reverse=True)
+            self.best_match, self.confidence = self.possible_matches[0]
+            if len(self.possible_matches) == 1 or (self.confidence - self.possible_matches[1][1]) > 20:
                 self.confidence = 99.99
             else:
-                self.confidence = min(99.99, self.confidence + (self.confidence - (scores[1][1] if len(scores) > 1 else 0)) / 2)
+                self.confidence = min(95.0, self.confidence)
 
     def refine_match(self, hash_type: str, hash_str: str) -> bool:
         if "Unix" in hash_type and "$" not in hash_str:
@@ -163,9 +170,9 @@ class HashTective:
         unique_indicators = {
             "MD5-Unix": r"^\$1\$", "SHA-256-Unix": r"^\$6\$", "bcrypt": r"^\$2[ayb]\$",
             "MD5-phpBB3": r"^\$H\$9", "MD5-Wordpress": r"^\$P\$B", "MD5-APR": r"^\$apr1\$",
-            "MySQL-160bit": r"^\*", "Lineage-II-C4": r"^0x", "Joomla-MD5": r"^[0-9a-f]{32}:",
-            "SAM-(LM:NT)": r"^[0-9A-F]{32}:", "SHA-1-Django": r"^sha1\$",
-            "SHA-256-Django": r"^sha256\$", "SHA-384-Django": r"^sha384\$",
+            "MySQL-160bit": r"^\*[0-9A-F]{40}$", "Lineage-II-C4": r"^0x",
+            "MD5-Joomla": r"^[0-9a-f]{32}:", "SAM-(LM:NT)": r"^[0-9A-F]{32}:",
+            "SHA-1-Django": r"^sha1\$", "SHA-256-Django": r"^sha256\$", "SHA-384-Django": r"^sha384\$",
             "Argon2i": r"^\$argon2i\$", "Argon2id": r"^\$argon2id\$", "PBKDF2-SHA256": r"^\$pbkdf2-sha256\$",
             "scrypt": r"^\$s0\$",
         }
@@ -180,16 +187,20 @@ class HashTective:
             print("│ Result: No hash type identified. Verify input integrity.")
         else:
             print("│ Status: SUCCESS")
-            print(f"│ Identified Hash Type: {self.best_match}")
-            print(f"│ Confidence Level: {self.confidence:.2f}%")
+            print(f"│ Best Match: {self.best_match}")
+            print(f"│ Confidence: {self.confidence:.2f}%")
             print(f"│ Details: Matches pattern '{HASH_DB[self.best_match][1]}' (Length: {HASH_DB[self.best_match][0] or 'Variable'})")
+            if len(self.possible_matches) > 1:
+                print("│ Other Possibilities:")
+                for match, score in self.possible_matches[1:5]:
+                    print(f"│   - {match}: {score:.2f}%")
         print("├" + "─" * 68 + "┤")
         print("│ Powered by XAI6")
         print("═" * 70)
 
 def main() -> None:
     print(LOGO)
-    detective = HashTective()
+    detective = HashSlicitx()
 
     if len(argv) > 1:
         detective.identify(argv[1])
