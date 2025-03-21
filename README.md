@@ -21,7 +21,7 @@ Clone the repository:
 
 ```sh
 git clone https://github.com/so1icitx/so1-hash-identifier.git
-cd hash-identifier
+cd so1-hash-identifier
 ```
 
 ## Usage
@@ -42,17 +42,7 @@ python hash_identifier.py
 
 Then enter your hash string when prompted. Type `exit` to quit.
 
-## Example
 
-```
-
-Enter hash (or 'exit'): 5d41402abc4b2a76b9719d911017c592
-
-============================================================
-[+] Likely Hash Types
-    [*] MD5
-============================================================
-```
 
 
 
